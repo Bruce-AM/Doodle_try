@@ -81,7 +81,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # CONTROLLS check
+    # keys check
     keys = pygame.key.get_pressed() 
     for key in player.movement:
         if keys[key]:
@@ -92,12 +92,13 @@ while running:
             else:
                 player.apply_force(player.movement[key])
                 player.update()
-    
+
+    # add gravity, update player pos
     player.apply_force((0, player.gravity))
     player.update()
     player.jump = False
 
-    # bound with floor check
+    # staying on the floor check
     score += 1
     if player.pos.y + player.radius > HEIGHT:
         player.pos.y = HEIGHT - player.radius
@@ -113,7 +114,7 @@ while running:
         if obstacle.collidable:
             obstacle.keep_player_on_top()
         
-    # obstacles spawn / dispawn
+    # obstacles spawn despawn
     y = obstacles[-1].rect.top
     if y > 0:
         obstacles.append(Obstacle(random_x_pos(), random_y_pos(y)))
@@ -121,10 +122,10 @@ while running:
     if y > HEIGHT:
         obstacles.popleft()
 
-    # DRAW PLAYER
+    # draw player
     pygame.draw.circle(screen, (100, 100, 255), (player.pos.x, player.pos.y), player.radius, 3)
 
-    # draw and move obstacles
+    # draw, update obstacles
     for obstacle in obstacles:
         obstacle.update()
         pygame.draw.rect(screen, (200, 100, 100), obstacle.rect)
