@@ -65,9 +65,9 @@ class Obstacle:
 random_x_pos = lambda : randint(0, WIDTH-100)
 random_y_pos = lambda y: randint(y - 200, y - player.radius)
 
-# pre spawn obstacle
 obstacles = deque([])
-obstacles.append(Obstacle(WIDTH // 2 - 50, 650)) # initial position
+# spawn first obstacle
+obstacles.append(Obstacle(WIDTH // 2 - 50, 650))
 
 score = 0
 best_score = 0
