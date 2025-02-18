@@ -72,6 +72,7 @@ obstacles.append(Obstacle(WIDTH // 2 - 50, 650))
 score = 0
 best_score = 0
 time, time_step = 0, 100
+# MAIN game loop
 running = True
 while running:
     color = 30 + (170 * min(1, score/17000))
